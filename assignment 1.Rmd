@@ -1,0 +1,95 @@
+---
+title: "Assignment 1"
+author: "Vaishnavi Behl"
+date: "0304282847"
+output: html_document
+---
+
+```{r setup, include=FALSE} 
+# this chunk contains code that sets global options for the entire .Rmd. 
+# we use include=FALSE to suppress it from the top of the document, but it will still appear in the appendix. 
+
+knitr::opts_chunk$set(echo = FALSE) # actually set the global chunk options. 
+# we set echo=FALSE to suppress code such that it by default does not appear throughout the document. 
+# note: this is different from .Rmd default
+```
+
+
+# Exercise 2
+
+**Analysing the built-in dataset "billboard" which contains song rankings for Billboard top 100 in the year 2000.**
+
+In order analyse this dataset, we need to:
+
+* load the tidyverse package and make it available in this session 
+* load the billboard dataset
+
+```{r}
+#loading package
+library(tidyverse)
+
+#loading dataset
+data("billboard")
+
+#checking if data is tidy
+head(billboard)
+```
+
+We can see that the above data is not tidy, since each row represents multiple observations - the artist, track, date and rank. 
+
+In order to tidy the data, we need to create a separate coloumn for the variable "week" and another one for "rank". 
+
+```{r}
+
+#creating new coloumns 
+
+billboard2 <- billboard %>% 
+pivot_longer(cols=wk1:wk76, names_to = "week", values_to = "rank")
+
+head(billboard2)
+```
+
+
+###Exercise 3
+
+In this exercise, we're analyse the built in R dataset "trees" that provides measurements of the diameter, height and volume of timber in 31 felled black cherry trees.
+
+```{r}
+
+#Loading the dataset trees into memory
+data("trees")
+
+#analysing variables
+head(trees)
+
+```
+
+```{r, echo=TRUE}
+
+# Using piping operator to compare the height of the trees with the average girth and volume
+trees %>%
+  group_by(Height) %>%
+  summarise(mean_Girth = mean(Girth),
+            mean_Vol = mean(Volume))
+
+head(trees)
+
+# Calculating the height to volume ratio of trees between 70 to 80 feet long
+
+trees %>%
+  arrange(Girth) %>%
+  mutate(Ratio = Height/Volume)
+
+head(trees)
+
+```
+
+We can see that there is an inversely proportional relationship between the girth of black cherry trees and the ratio of their height to weight. 
+
+
+## Appendix: All code in this assignment
+
+```{r ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE} 
+# this chunk generates the complete code appendix. 
+# eval=FALSE tells R not to run (``evaluate'') the code here (it was already run before).
+```
