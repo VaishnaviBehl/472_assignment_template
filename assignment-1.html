@@ -351,7 +351,6 @@ display: none;
 
 <h1 class="title toc-ignore">Assignment 1</h1>
 <h4 class="author">Vaishnavi Behl</h4>
-<h4 class="date">0304282847</h4>
 
 </div>
 
@@ -480,14 +479,6 @@ trees %&gt;%
 ## 29  18.0     80   51.5 1.553398
 ## 30  18.0     80   51.0 1.568627
 ## 31  20.6     87   77.0 1.129870</code></pre>
-<pre class="r"><code>head(trees)</code></pre>
-<pre><code>##   Girth Height Volume
-## 1   8.3     70   10.3
-## 2   8.6     65   10.3
-## 3   8.8     63   10.2
-## 4  10.5     72   16.4
-## 5  10.7     81   18.8
-## 6  10.8     83   19.7</code></pre>
 <p>We can see that there is an inversely proportional relationship
 between the girth of black cherry trees and the ratio of their height to
 weight.</p>
@@ -535,8 +526,6 @@ head(trees)
 trees %&gt;%
   arrange(Girth) %&gt;%
   mutate(Ratio = Height/Volume)
-
-head(trees)
 
 # this chunk generates the complete code appendix. 
 # eval=FALSE tells R not to run (``evaluate&#39;&#39;) the code here (it was already run before).</code></pre>
